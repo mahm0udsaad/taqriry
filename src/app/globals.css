@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Taqriry — Editorial Minimalism
+   Warm stone neutrals + single amber accent
+   ========================================================= */
+
+:root {
+  /* Surfaces — warm, not cold */
+  --bg:           #fafaf9;   /* stone-50 */
+  --surface:      #ffffff;
+  --surface-2:    #f5f5f4;   /* stone-100 */
+  --border:       #e7e5e4;   /* stone-200 */
+  --border-strong:#d6d3d1;   /* stone-300 */
+
+  /* Text */
+  --fg:           #0c0a09;   /* stone-950 */
+  --fg-muted:     #57534e;   /* stone-600 */
+  --fg-subtle:    #a8a29e;   /* stone-400 */
+
+  /* Accent — warm editorial amber, data highlights only */
+  --accent:       #b45309;   /* amber-700 */
+  --accent-soft:  #fef3c7;   /* amber-100 */
+
+  /* Semantic */
+  --success:      #15803d;
+  --danger:       #b91c1c;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* Shadows — subtle only */
+  --shadow-sm: 0 1px 2px rgba(12, 10, 9, 0.04);
+  --shadow-md: 0 2px 8px rgba(12, 10, 9, 0.06);
+}
+
+@theme inline {
+  --color-bg:           var(--bg);
+  --color-surface:      var(--surface);
+  --color-surface-2:    var(--surface-2);
+  --color-border:       var(--border);
+  --color-border-strong:var(--border-strong);
+  --color-fg:           var(--fg);
+  --color-fg-muted:     var(--fg-muted);
+  --color-fg-subtle:    var(--fg-subtle);
+  --color-accent:       var(--accent);
+  --color-accent-soft:  var(--accent-soft);
+  --color-success:      var(--success);
+  --color-danger:       var(--danger);
+
+  --font-sans: var(--font-plex-arabic), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ───────── base ───────── */
+* { border-color: var(--border); }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-plex-arabic), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Arabic numerals that match the font weight */
+.nums-lnum { font-variant-numeric: lining-nums tabular-nums; }
+
+/* Focus rings — amber, not default blue */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+button, a { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+/* Custom scrollbar (subtle) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--fg-subtle); }
+
+/* ───────── prose for assistant messages ───────── */
+.prose-msg {
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.prose-msg p { margin: 0 0 0.85em; }
+.prose-msg p:last-child { margin-bottom: 0; }
+.prose-msg strong { font-weight: 600; color: var(--fg); }
+.prose-msg ul, .prose-msg ol { margin: 0 1.25em 0.85em; padding: 0; }
+.prose-msg ul { list-style: disc; }
+.prose-msg ol { list-style: decimal; }
+.prose-msg li { margin: 0.25em 0; }
+.prose-msg h1, .prose-msg h2, .prose-msg h3 {
+  font-weight: 600;
+  margin: 1.2em 0 0.5em;
+  line-height: 1.3;
+}
+.prose-msg h1 { font-size: 1.25em; }
+.prose-msg h2 { font-size: 1.15em; }
+.prose-msg h3 { font-size: 1.05em; }
+.prose-msg code {
+  background: var(--surface-2);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.prose-msg blockquote {
+  border-inline-start: 3px solid var(--accent);
+  padding-inline-start: 1em;
+  margin: 0.85em 0;
+  color: var(--fg-muted);
+}
+.prose-msg a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Highlight numbers/figures inside prose */
+.prose-msg .figure {
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ───────── dot animation ───────── */
+@keyframes dot-pulse {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-2px); }
+}
+.typing-dot { animation: dot-pulse 1.2s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Fade-in for messages */
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-in { animation: msg-in 0.25s ease-out; }
+
+/* ───────── reduced motion ───────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
