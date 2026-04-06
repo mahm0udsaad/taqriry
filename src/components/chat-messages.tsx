@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import type { UIMessage } from "ai";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   Sparkles,
   Copy,
@@ -231,7 +232,18 @@ function AssistantBubble({
           if (part.type === "text") {
             return (
               <div key={idx} className="prose-msg overflow-hidden">
-                <Markdown>{part.text}</Markdown>
+                <Markdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    table: ({ children }) => (
+                      <div className="table-wrapper">
+                        <table>{children}</table>
+                      </div>
+                    ),
+                  }}
+                >
+                  {part.text}
+                </Markdown>
               </div>
             );
           }
