@@ -222,6 +222,12 @@ function AssistantBubble({
         {message.parts.map((part, idx) => {
           /* text part */
           if (part.type === "text") {
+            // Filter out raw JSON action leaks from the model
+            const cleaned = part.text.replace(
+              /\{\s*"action"\s*:\s*"(?:showReportPicker|askClarifyingQuestion|fetchReportContent)"[^}]*\}/g,
+              ""
+            ).trim();
+            if (!cleaned) return null;
             return (
               <div key={idx} className="prose-msg overflow-hidden">
                 <Markdown
@@ -234,7 +240,7 @@ function AssistantBubble({
                     ),
                   }}
                 >
-                  {part.text}
+                  {cleaned}
                 </Markdown>
               </div>
             );
