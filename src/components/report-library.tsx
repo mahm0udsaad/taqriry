@@ -201,10 +201,10 @@ export default function ReportLibrary({
         {/* Header */}
         <div className="p-5">
           <h1 className="text-xl font-bold text-fg">
-            {"\u062A\u0642\u0631\u064A\u0631\u0643"}
+            {"\u062A\u0642\u0631\u064A\u0631\u064A"}
           </h1>
           <p className="mt-1 text-sm text-fg-muted">
-            {"\u0645\u062D\u0627\u062F\u062B\u0629 \u0630\u0643\u064A\u0629 \u0645\u0639 \u062A\u0642\u0627\u0631\u064A\u0631\u0643"}
+            {"\u0645\u062D\u0627\u062F\u062B\u0629 \u0630\u0643\u064A\u0629 \u0645\u0639 \u062A\u0642\u0627\u0631\u064A\u0631\u064A"}
           </p>
         </div>
 

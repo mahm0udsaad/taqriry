@@ -94,7 +94,7 @@ export default function Home() {
           </button>
 
           <h1 className="flex-1 text-center font-semibold text-lg text-fg">
-            تقريرك
+            تقريري
           </h1>
 
           {selectedReportIds.length > 0 && (

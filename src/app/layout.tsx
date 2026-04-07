@@ -10,7 +10,7 @@ const plexArabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "تقريرك — محادثة ذكية مع تقاريرك",
+  title: "تقريري — محادثة ذكية مع تقاريرك",
   description:
     "منصة ذكية لتحليل التقارير والإجابة عن أسئلتك بالعربية. لخِّص، قارِن، واستخرج الأرقام من آلاف التقارير في ثوانٍ.",
   keywords: ["تقارير", "ذكاء اصطناعي", "تحليل", "SaaS", "Taqriry"],
