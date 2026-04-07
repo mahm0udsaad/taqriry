@@ -124,7 +124,7 @@ export default function Home() {
               )}
             >
               <span className="flex-1">
-                حدث خطأ. يرجى المحاولة مرة أخرى.
+                {error.message || "حدث خطأ. يرجى المحاولة مرة أخرى."}
               </span>
               <button
                 onClick={() => regenerate()}
